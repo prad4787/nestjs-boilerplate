@@ -1,9 +1,9 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
-import { ApiException } from '../exceptions/api.exception';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from 'src/common/decorators';
+import { UnauthorizeException } from '../exceptions';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
 
     const request: Request = context.switchToHttp().getRequest();
     const token = request.headers['authorization'];
-    if (!token) throw new ApiException('Unauthorized', 401);
+    if (!token) throw new UnauthorizeException();
     // TODO: validate token
     return true;
   }

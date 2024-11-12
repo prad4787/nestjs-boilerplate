@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { config } from './../../../node_modules/dotenv/lib/main.d';
-import { UserMysqlEntity } from 'src/infra/datasource/mysql/entities';
 
 @Injectable()
 export class MysqlConnection {
@@ -17,12 +15,14 @@ export class MysqlConnection {
         password: config.get<string>('MYSQL_PASSWORD'),
         database: config.get<string>('MYSQL_DATABASE'),
         entities: [__dirname + '/../../**/**/*.mysql.entity{.ts,.js}'],
-        // entities: [UserMysqlEntity],
-
-        synchronize: true,
+        autoLoadEntities: true,
+        logging: true,
+        synchronize: false,
       }),
     });
   }
 
-  static InjectString = 'TypeOrmMysqlConnection';
+  static get InjectString(): string {
+    return 'TypeOrm_Mysql_Connection'.toUpperCase();
+  }
 }

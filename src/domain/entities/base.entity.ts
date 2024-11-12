@@ -1,8 +1,8 @@
 export abstract class BaseEntity {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date | null;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: Date | null;
 
   static get InjectableString(): string {
     return (

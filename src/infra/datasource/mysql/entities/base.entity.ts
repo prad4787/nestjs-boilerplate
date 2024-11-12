@@ -10,17 +10,17 @@ export abstract class BaseEntity {
   id: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
 
   @Column({
     type: 'timestamp',
     nullable: true,
     default: () => null,
   })
-  deletedAt: Date;
+  deleted_at: Date;
 
   //   @BeforeInsert()
   //   setCreateAtTimestamps() {

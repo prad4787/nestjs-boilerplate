@@ -1,4 +1,4 @@
-import { AdminStatus } from 'src/common/enum/admin-status.enum';
+import { AdminStatus } from 'src/common/enum';
 import { BaseEntity } from '.';
 
 export class UserEntity extends BaseEntity {

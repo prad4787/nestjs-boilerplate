@@ -1,7 +1,6 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { ResponseInterceptor } from './interceptor/response.interceptor';
-import { ErrorInterceptor } from './interceptor/error.interceptor';
-import { LoggerMiddleware } from './middleware/logger.middleware';
+import { ErrorInterceptor, ResponseInterceptor } from './interceptor';
+import { LoggerMiddleware } from './middleware';
 
 @Module({
   imports: [],

@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserRepository } from 'src/domain/repositories/user.repository';
-import { UserRepositoryImp } from 'src/infra/datasource/mysql/repositories/user.repository';
+import { IUserRepository } from 'src/domain/repositories';
+import { IUserService } from 'src/domain/services';
+import { UserRepositoryImp } from 'src/infra/datasource/mysql/repositories';
 
 @Injectable()
-export class UserService {
+export class UserServiceImp  implements IUserService {
   constructor(
     @Inject(UserRepositoryImp)
-    private readonly userRepo: UserRepositoryImp,
+    private readonly userRepo: IUserRepository,
   ) {}
 
   async getUsers() {

@@ -16,6 +16,8 @@ async function bootstrap() {
     }),
   );
 
+  app.setGlobalPrefix("/api")
+
   const port = config.get<number>('PORT') || 8000;
 
   await app.listen(port, () => logger.log(`Listening on port ${port}`));

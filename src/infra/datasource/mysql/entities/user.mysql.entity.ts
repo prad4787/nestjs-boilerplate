@@ -1,7 +1,7 @@
 import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { UserEntity } from 'src/domain/entities';
-import { AdminStatus } from 'src/common/enum/admin-status.enum';
+import { AdminStatus } from 'src/common/enum';
 
 @Entity("admin")
 export class UserMysqlEntity extends BaseEntity implements UserEntity {

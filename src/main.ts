@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { BaseException } from './infra/server/nestjs/exceptions/base.exception';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard } from './infra/server/nestjs/guard';
 async function bootstrap() {
   const logger = new Logger('BOOTSTRAP');
   const app = await NestFactory.create(AppModule);
@@ -17,7 +18,6 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix("/api")
-
   const port = config.get<number>('PORT') || 8000;
 
   await app.listen(port, () => logger.log(`Listening on port ${port}`));

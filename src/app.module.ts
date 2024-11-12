@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ControllerModule } from './infra/controllers';
 import { MysqlModule } from './infra/datasource/mysql/mysql.module';
 import { DataSourceModule } from './infra/datasource/datasource.module';
+import { InfraModule } from './infra/infra.module';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { DataSourceModule } from './infra/datasource/datasource.module';
       envFilePath: '.env',
     }),
     DataSourceModule,
-    ControllerModule,
+    InfraModule,
     MysqlModule,
   ],
   controllers: [],

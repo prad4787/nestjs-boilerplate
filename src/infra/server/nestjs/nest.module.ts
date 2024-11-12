@@ -1,6 +1,8 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ErrorInterceptor, ResponseInterceptor } from './interceptor';
 import { LoggerMiddleware } from './middleware';
+import { AuthGuard } from './guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [],
@@ -14,7 +16,12 @@ import { LoggerMiddleware } from './middleware';
       provide: 'APP_INTERCEPTOR',
       useClass: ErrorInterceptor,
     },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
   ],
+  exports: [],
 })
 export class NestModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

@@ -1,16 +1,11 @@
-import { AdminStatus } from 'src/common/enum';
 import { BaseEntity } from '.';
 
 export class UserEntity extends BaseEntity {
-  account: string;
+  email: string;
   password: string;
-  balance: number;
-  parent_id: number;
-  role_id: number;
-  status: AdminStatus;
-  child_count: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
   ip: string;
-  time_zone: number;
-  attempts: number;
   last_login_at: Date;
 }

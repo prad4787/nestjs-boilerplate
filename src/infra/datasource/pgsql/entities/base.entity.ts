@@ -22,6 +22,7 @@ export abstract class BaseEntity {
   })
   deleted_at: Date;
 
+
   static get InjectableString(): string {
     return (
       this.name

@@ -1,9 +1,9 @@
 import { Global, Module } from '@nestjs/common';
-import { MysqlModule } from './mysql/mysql.module';
+import { PgsqlModule } from './pgsql/pgsql.module';
 
 @Global()
 @Module({
-  imports: [MysqlModule],
-  exports: [MysqlModule],
+  imports: [PgsqlModule],
+  exports: [PgsqlModule],
 })
 export class DataSourceModule {}

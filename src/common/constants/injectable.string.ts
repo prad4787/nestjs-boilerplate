@@ -1,0 +1,7 @@
+export default class InjectableString {
+  static MYSQL_DATASOURCE = 'MYSQL_DATASOURCE';
+  static MONGODB_DATASOURCE = 'MONGODB_DATASOURCE';
+  static POSTGRESQL_DATASOURCE = 'POSTGRESQL_DATASOURCE';
+  static APP_LOGGER = 'APP_LOGGER';
+  static APP_CACHING = 'APP_CACHING';
+}

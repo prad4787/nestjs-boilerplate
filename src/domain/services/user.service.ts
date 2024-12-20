@@ -1,5 +1,5 @@
-import { UserEntity } from "../entities";
+import { AdminEntity } from "../entities";
 
-export interface IUserService {
-  getUsers(): Promise<UserEntity[]>;
+export interface IAdminService {
+  getUsers(): Promise<AdminEntity[]>;
 }

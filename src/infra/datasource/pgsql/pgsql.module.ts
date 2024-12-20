@@ -1,14 +1,19 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { PgsqlConnection } from 'src/common/database/pgsql.connection';
+import { PgsqlDatasource } from './pg.datasource';
 
 
 @Module({
   imports: [
     PgsqlConnection.connect(),
   ],
-  exports: [],
-  providers: [],
+  exports: [
+  ],
+  providers: [
+    {
+      provide: "IDatasource",
+      useClass: PgsqlDatasource
+    }
+  ],
 })
-export class PgsqlModule {}
+export class PgsqlModule { }

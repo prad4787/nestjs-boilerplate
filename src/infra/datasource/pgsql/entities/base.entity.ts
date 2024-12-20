@@ -1,4 +1,5 @@
 import {
+  AfterUpdate,
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
@@ -9,18 +10,34 @@ export abstract class BaseEntity {
   @PrimaryGeneratedColumn({})
   id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({
+    nullable: true,
+    type: 'timestamp',
+    default: null,
+  })
   updated_at: Date;
 
   @Column({
     type: 'timestamp',
     nullable: true,
-    default: () => null,
+    default: null,
   })
   deleted_at: Date;
+
+  @AfterUpdate()
+  afterUpdate() {
+    this.updated_at = new Date();
+  }
+
+  softDelete() {
+    this.deleted_at = new Date();
+  }
 
 
   static get InjectableString(): string {

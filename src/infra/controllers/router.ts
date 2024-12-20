@@ -4,8 +4,13 @@ import { UserControllerModule } from './user/user.controller.module';
 
 const routes: Routes = [
   {
-    path: '/users',
-    children: [UserControllerModule],
+    path: '/v1',
+    children: [
+      {
+        path: '/users',
+        children: [UserControllerModule],
+      }
+    ],
   },
 ];
 

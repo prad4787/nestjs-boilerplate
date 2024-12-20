@@ -1,5 +1,6 @@
+import { CreateUserDto } from "src/application/dto";
 import { UserEntity } from "../entities";
 
 export interface IUserService {
-  getUsers(): Promise<UserEntity[]>;
+  create(dto: CreateUserDto): Promise<UserEntity>
 }

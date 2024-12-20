@@ -2,7 +2,7 @@ import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { UserEntity } from 'src/domain/entities';
 
-@Entity("admin")
+@Entity("users")
 export class UserPgEntity extends BaseEntity implements UserEntity {
   @Column({})
   first_name: string;
@@ -28,6 +28,7 @@ export class UserPgEntity extends BaseEntity implements UserEntity {
   ip: string;
 
   @Column({
+    type: 'timestamp',
     nullable: true,
     default: null,
   })

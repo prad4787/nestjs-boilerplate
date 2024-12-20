@@ -1,10 +1,10 @@
 export abstract class BaseEntity {
   id: number;
   created_at: Date;
-  updated_at: Date;
+  updated_at: Date | null;
   deleted_at: Date | null;
 
-  static get InjectableString(): string {
+  static get REPOSITORY(): string {
     return (
       this.name
         .replace(/(A-Z)/g, ' $1')

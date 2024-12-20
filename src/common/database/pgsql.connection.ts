@@ -1,24 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserPgEntity } from 'src/infra/datasource/pgsql/entities';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
 @Injectable()
 export class PgsqlConnection {
   static connect() {
     return TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get<string>('POSTGRES_HOST'),
-        port: config.get<number>('POSTGRES_PORT'),
-        username: config.get<string>('POSTGRES_USER'),
-        password: config.get<string>('POSTGRES_PASSWORD'),
-        database: config.get<string>('POSTGRES_DATABASE'),
-        entities: [__dirname + '/../../**/**/*.pgsql.entity{.ts,.js}'],
-        autoLoadEntities: true,
-        logging: true,
-        synchronize: true,
-      }),
+      useFactory: async (config: ConfigService) => {
+        const configs: DataSourceOptions = {
+          type: 'postgres',
+          host: config.get<string>('PGSQL_HOST'),
+          port: config.get<number>('PGSQL_PORT'),
+          username: config.get<string>('PGSQL_USER'),
+          password: config.get<string>('PGSQL_PASSWORD'),
+          database: config.get<string>('PGSQL_DB'),
+          entities: [__dirname + '/../../**/**/*.pgsql.entity{.ts,.js}'],
+          logging: true,
+          synchronize: true,
+          
+        };
+        return (configs);
+      },
     });
   }
 

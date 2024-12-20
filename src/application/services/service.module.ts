@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DataSourceModule } from '../datasource/datasource.module';
 import { UserServiceImp } from './user/user.service';
+import { DataSourceModule } from 'src/infra/datasource/datasource.module';
 
 @Module({
   imports: [DataSourceModule],
-  exports: [UserServiceImp],
-  providers: [UserServiceImp],
+  exports: [],
+  providers: [],
 })
 export class ServiceModule {}

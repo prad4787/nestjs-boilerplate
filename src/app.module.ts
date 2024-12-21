@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ControllerModule } from './infra/controllers';
-import { MysqlModule } from './infra/datasource/mysql/mysql.module';
-import { DataSourceModule } from './infra/datasource/datasource.module';
 import { InfraModule } from './infra/infra.module';
+import { UseCaseModule } from './application/usecases/usecase.module';
+import { ServiceModule } from './application/services/service.module';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from './infra/server/nestjs/exceptions';
 
 @Module({
   imports: [
@@ -11,9 +12,16 @@ import { InfraModule } from './infra/infra.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    ServiceModule,
+    UseCaseModule,
     InfraModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
 export class AppModule {}

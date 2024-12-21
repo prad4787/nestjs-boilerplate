@@ -10,7 +10,7 @@ type ConditionType = {
 
 const parseCondition = (condition: ConditionType) => {
     // check if condition have where
-    if (condition?.where) {
+    if (!(condition?.where)) {
         return { where: condition };
     }
     return condition;
@@ -52,6 +52,7 @@ export class PgGenericRepository<T> implements GenericRepository<T> {
         });
     }
     async getOne(condition: ConditionType, relations?: {} | undefined): Promise<T> {
+        condition = parseCondition(condition);
         return rescue<T>(async (): Promise<T> => {
             const item: T = await this._repository.findOne({
                 ...condition,

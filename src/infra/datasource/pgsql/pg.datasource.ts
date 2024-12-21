@@ -5,4 +5,6 @@ import { IUserRepository } from "src/domain/repositories";
 @Injectable()
 export class PgsqlDatasource implements IDatasource {
     userRepository: IUserRepository;
+
+    
 }

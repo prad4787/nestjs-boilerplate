@@ -2,8 +2,10 @@ import { Column, Entity } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { UserEntity } from 'src/domain/entities';
 
-@Entity("users")
-export class UserPgEntity extends BaseEntity implements UserEntity {
+@Entity({
+  name: 'users',
+})
+export class UserPgSqlEntity extends BaseEntity implements UserEntity {
   @Column({})
   first_name: string;
 

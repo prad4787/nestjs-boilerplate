@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, IsStrongPassword } from "class-validator";
+import { UserEntity } from "src/domain/entities";
 
 export class CreateUserDto {
     @IsNotEmpty()
@@ -20,4 +21,5 @@ export class CreateUserDto {
     @IsString()
     @IsStrongPassword()
     password: string;
+
 }

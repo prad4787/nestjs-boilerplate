@@ -24,9 +24,19 @@ export class ResponseInterceptor<T>
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<Response<T>> | Promise<Observable<Response<T>>> {
-    console.log('ResponseInterceptor');
+    
     const ctx = context.switchToHttp();
     const response = ctx.getResponse<Response<T>>();
+    console.log('ResponseInterceptor' , {
+      statusCode: response.statusCode,
+      message: response.message,
+      data: response.data,
+      error: response.error,
+      timestamp: response.timestamp,
+      path: response.path,
+      method: response.method,
+      url: response.url,
+    });
     response.statusCode = 200;
     return next.handle();
   }

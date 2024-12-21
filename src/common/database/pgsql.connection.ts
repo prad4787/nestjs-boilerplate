@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserPgEntity } from 'src/infra/datasource/pgsql/entities';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import {  DataSourceOptions } from 'typeorm';
 
 @Injectable()
 export class PgsqlConnection {
@@ -18,7 +17,7 @@ export class PgsqlConnection {
           password: config.get<string>('PGSQL_PASSWORD'),
           database: config.get<string>('PGSQL_DB'),
           entities: [__dirname + '/../../**/**/*.pgsql.entity{.ts,.js}'],
-          logging: true,
+          // logging: true,
           synchronize: true,
           
         };

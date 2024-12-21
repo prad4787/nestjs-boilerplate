@@ -11,14 +11,17 @@ export class LoggerMiddleware implements NestMiddleware {
     const { body, method, originalUrl, ip } = request;
     const userAgent = request.get('user-agent') || '';
     const startDate = Date.now();
+    this.logger.log(
+      `[method]${method} [url]${originalUrl} [ip]${ip} [Agent]${userAgent}`,
+    );
     response.on('finish', () => {
       const status = response.statusCode;
       const duration = Date.now() - startDate;
       let message = `[method]${method} [url]${originalUrl} [status]${status}  -  [ip]${ip} [Agent]${userAgent} [duration]${duration}ms`;
-    //   if (body) message += ` - ${JSON.stringify(body)}`;
+      if (body) message += ` - ${JSON.stringify(body)}`;
       if (status >= 500) this.logger.error(message);
-      else if (status >= 400) this.logger.warn(message);
-      else this.logger.log(message);
+      else if (status >= 400) this.logger.error(message);
+      else this.logger.debug(message);
     });
     next();
   }

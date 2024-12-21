@@ -6,7 +6,10 @@ import { DataSourceModule } from "src/infra/datasource/datasource.module";
     imports: [
         DataSourceModule
     ],
-    providers: [UserServiceImp],
+    providers: [{
+        provide: "IUserService",
+        useClass: UserServiceImp
+    }],
     exports: [UserServiceImp],
 })
 export class UserServiceModule {}
